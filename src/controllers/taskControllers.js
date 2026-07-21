@@ -3,7 +3,32 @@ import { Task } from "../models/TaskModel.js";
 const getTasks = async (req, res) => {
     try {
         const userLogged = req.userLogged
-        const filterTasks = await Task.find({ userId: userLogged.id })
+
+        const { status, priority, search, sort } = req.query
+
+        console.log(req.query)
+
+        const filters = { userId: userLogged.id }
+
+        if (status) { filters.status = status }
+
+        if (priority) { filters.priority = priority }
+
+        if (search) { filters.$or = [{ title: { $regex: search, $options: 'i' } }, { description: { $regex: search, $options: 'i' } }] }
+
+        const allowedSorts = [
+            "createdAt",
+            "-createdAt",
+            "dueDate",
+            "-dueDate",
+            "title",
+            "-title"
+        ]
+
+        const sortOption = allowedSorts.includes(sort) ? sort : "-createdAt"
+
+        const filterTasks = await Task.find(filters).sort(sortOption)
+
         res.json({
             success: true,
             data: filterTasks,
@@ -17,7 +42,7 @@ const getTasks = async (req, res) => {
 const getTask = async (req, res) => {
     try {
         const id = req.params.id
-        const foundTask = await Task.findById(id, { userId: 0})
+        const foundTask = await Task.findById(id, { userId: 0 })
         if (!foundTask) return res.status(404).json({ success: false, error: "No existe una tarea con ese ID" })
         res.json({
             success: true,
@@ -62,7 +87,7 @@ const updateTask = async (req, res) => {
     try {
         const id = req.params.id
         const body = req.body
-        const updatedTask = await Task.findByIdAndUpdate(id, { ...body }, { new: true, projection: {userId : 0 } })
+        const updatedTask = await Task.findByIdAndUpdate(id, { ...body }, { new: true, projection: { userId: 0 } })
 
         if (!updatedTask) return res.status(404).json({ success: false, error: "No existe una tarea con ese ID" })
 
