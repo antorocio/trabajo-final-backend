@@ -4,7 +4,7 @@ const getTasks = async (req, res) => {
     try {
         const userLogged = req.userLogged
 
-        const { status, priority, search, sort } = req.query
+        const { status, priority, search, sort,  page = 1, limit = 5 } = req.query
 
         console.log(req.query)
 
@@ -16,22 +16,27 @@ const getTasks = async (req, res) => {
 
         if (search) { filters.$or = [{ title: { $regex: search, $options: 'i' } }, { description: { $regex: search, $options: 'i' } }] }
 
-        const allowedSorts = [
-            "createdAt",
-            "-createdAt",
-            "dueDate",
-            "-dueDate",
-            "title",
-            "-title"
-        ]
+        const allowedSorts = [ "createdAt", "-createdAt", "dueDate", "-dueDate", "title", "-title" ]
 
         const sortOption = allowedSorts.includes(sort) ? sort : "-createdAt"
 
-        const filterTasks = await Task.find(filters).sort(sortOption)
+        const skip = (page - 1) * limit
+
+        const filterTasks = await Task.find(filters).sort(sortOption).skip(skip).limit(Number(limit))
+
+        const totalTasks = await Task.countDocuments(filters)
+
+        const totalPages = Math.ceil(totalTasks / limit)
 
         res.json({
             success: true,
             data: filterTasks,
+            pagination: { 
+                page: Number(page),
+                limit: Number(limit),
+                totalTasks,
+                totalPages
+            },
             message: "Tareas obtenidas correctamente"
         })
     } catch (error) {
