@@ -1,6 +1,6 @@
 import express from 'express'
 import { connectDb } from './config/mongoDb.js'
-import { ProductRouter } from './routes/productRouter.js'
+import { TaskRouter } from './routes/taskRouter.js'
 import { AuthRouter } from './routes/authRouter.js'
 import { authMiddleware } from './middlewares/authMiddleware.js'
 import cors from "cors"
@@ -21,7 +21,7 @@ server.get("/", (req, res) => {
     })
 })
 
-server.use("/api/products", authMiddleware, ProductRouter)
+server.use("/api/task", authMiddleware, TaskRouter)
 server.use("/api/auth", AuthRouter )
 
 server.listen(PORT, () => {
