@@ -123,4 +123,50 @@ const deleteTask = async (req, res) => {
     }
 }
 
-export { getTasks, getTask, createTask, updateTask, deleteTask }
+const getAllTasksAdmin = async (req, res) => {
+    try {
+        const tasks = await Task.find()
+            .populate("userId", "username email role")
+            .sort({ createdAt: -1 })
+
+        return res.status(200).json({
+            success: true,
+            data: tasks,
+            message: "odas las tareas fueron obtenidas correctamente"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: "Error al obtener las tareas"
+        })
+    }
+
+}
+
+const deleteTaskAdmin = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const deletedTask = await Task.findByIdAndDelete(id)
+
+        if (!deletedTask) {
+            return res.status(404).json({
+                success: false,
+                error: "Tarea no encontrada"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: deletedTask,
+            message: "Tarea eliminada correctamente"
+        })
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            error: "ID de tarea inválido"
+        })
+    }
+}
+
+export { getTasks, getTask, createTask, updateTask, deleteTask, getAllTasksAdmin, deleteTaskAdmin }

@@ -15,12 +15,6 @@ const register = async (req, res) => {
 
         if (foundUser) { return res.status(409).json({ success: false, error: "El usuario ya existe" }) }
 
-        const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#_-]).{8,}$/
-
-        if (!regex.test(password)) {
-            return res.status(400).json({ success: false, error: "Contraseña inválida. Debe contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial." })
-        }
-
         const hashPassword = await bcrypt.hash(password, 10)
 
         const newUser = await User.create({
@@ -28,8 +22,6 @@ const register = async (req, res) => {
             email,
             password: hashPassword,
         })
-
-        newUser.save()
 
         const publicDataUser = {
             id: newUser._id,
@@ -39,7 +31,7 @@ const register = async (req, res) => {
             updatedAt: newUser.updatedAt
         }
 
-        res.json({
+        res.status(201).json({
             success: true,
             data: publicDataUser,
             message: "Usuario registrado correctamente"
@@ -67,7 +59,7 @@ const login = async (req, res) => {
 
         if (!isValid) { return res.status(401).json({ success: false, error: "No autorizado" }) }
 
-        const payload = { id: foundUser._id, username: foundUser.username, email: foundUser.email }
+        const payload = { id: foundUser._id, username: foundUser.username, email: foundUser.email, role: foundUser.role }
 
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: "1h"
@@ -75,7 +67,15 @@ const login = async (req, res) => {
 
         res.json({
             success: true,
-            data: token,
+            data: {
+                token,
+                user: {
+                    id: foundUser._id,
+                    username: foundUser.username,
+                    email: foundUser.email,
+                    role: foundUser.role
+                }
+            },
             message: "Token generado correctamente"
         })
     } catch (error) {
