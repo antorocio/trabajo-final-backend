@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Comprar sahumerios",
+    "description": "Comprar sahumerios de lavanda para el local.",
+    "status": "pending",
+    "priority": "medium",
+    "dueDate": "2026-08-05"
+  },
+  {
+    "title": "Actualizar catálogo",
+    "description": "Agregar los nuevos cristales al catálogo de productos.",
+    "status": "in_progress",
+    "priority": "high",
+    "dueDate": "2026-08-02"
+  },
+  {
+    "title": "Responder consultas",
+    "description": "Contestar los mensajes pendientes de los clientes.",
+    "status": "completed",
+    "priority": "medium",
+    "dueDate": "2026-07-30"
+  },
+  {
+    "title": "Preparar pedidos",
+    "description": "Armar los paquetes para los envíos del día.",
+    "status": "pending",
+    "priority": "high",
+    "dueDate": "2026-08-01"
+  },
+  {
+    "title": "Publicar contenido",
+    "description": "Subir una publicación sobre aromaterapia en redes sociales.",
+    "status": "in_progress",
+    "priority": "low",
+    "dueDate": "2026-08-06"
+  },
+  {
+    "title": "Revisar stock",
+    "description": "Controlar el inventario de velas aromáticas.",
+    "status": "pending",
+    "priority": "medium",
+    "dueDate": "2026-08-08"
+  },
+  {
+    "title": "Diseñar promociones",
+    "description": "Crear una promoción para el fin de semana.",
+    "status": "completed",
+    "priority": "high",
+    "dueDate": "2026-07-28"
+  },
+  {
+    "title": "Organizar depósito",
+    "description": "Ordenar los productos por categorías.",
+    "status": "pending",
+    "priority": "low",
+    "dueDate": "2026-08-10"
+  },
+  {
+    "title": "Reunión con proveedor",
+    "description": "Definir la próxima compra de minerales.",
+    "status": "in_progress",
+    "priority": "high",
+    "dueDate": "2026-08-04"
+  },
+  {
+    "title": "Respaldar base de datos",
+    "description": "Realizar una copia de seguridad de la base de datos.",
+    "status": "completed",
+    "priority": "high",
+    "dueDate": "2026-07-31"
+  }
+]

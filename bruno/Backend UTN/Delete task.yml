@@ -1,0 +1,18 @@
+info:
+  name: Delete task
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: http://localhost:3001/api/tasks/6a6011f2f6a6b78a9997500e
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNWZhMGU0OTA3Njg0Yjg3ZmRkMTEyOCIsInVzZXJuYW1lIjoiRmVybmFuZG8iLCJlbWFpbCI6ImZlckBnbWFpbC5jb20iLCJpYXQiOjE3ODQ2ODAxMzUsImV4cCI6MTc4NDY4MzczNX0.E3bmi4bRVFd-fmCcFhjddgzMAbGYSGhRI-yzjlHX_4I
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

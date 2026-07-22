@@ -107,24 +107,10 @@ Authorization: Bearer *token*
 ```
 
 ---
-
 ## 👥 Roles
 
-### Usuario
-
-- Registrar una cuenta.
-- Iniciar sesión.
-- Crear tareas.
-- Ver únicamente sus tareas.
-- Editar sus tareas.
-- Eliminar sus tareas.
-
-### Administrador
-
-Además de las funciones del usuario:
-
-- Ver todas las tareas.
-- Eliminar cualquier tarea.
+- **User:** administra únicamente sus propias tareas.
+- **Admin:** además puede visualizar y eliminar las tareas de cualquier usuario.
 
 ---
 
@@ -149,6 +135,18 @@ Además de las funciones del usuario:
  DELETE | `/api/tasks/:id` | Eliminar una tarea 
 
 ### Admin
+
+Para utilizar los endpoints de administrador:
+
+1. Modificar el rol de un usuario existente en MongoDB:
+
+
+{
+  "role": "admin"
+}
+
+2. Iniciar sesión nuevamente para generar un JWT con el nuevo rol.
+
  GET | `/api/tasks/admin/all` | Obtener todas las tareas 
 
  DELETE | `/api/tasks/admin/:id` | Eliminar cualquier tarea 
@@ -177,3 +175,35 @@ Ejemplo:
 ```http
 GET /api/tasks?status=pending&priority=high&page=1&limit=5
 ```
+
+--- 
+## 📄 Ejemplos de datos
+
+En la carpeta `docs` se incluyen ejemplos de cuerpos (`body`) para facilitar las pruebas de la API.
+
+```text
+docs/
+├── tasks-examples.json
+└── user-example.json
+```
+
+Estos archivos pueden utilizarse directamente en Bruno para probar los endpoints de registro y creación de tareas.
+
+---
+## 🧪 Colección de Bruno
+
+El proyecto incluye una colección de **Bruno** con todos los endpoints necesarios para probar la API.
+
+Ubicación:
+
+```text
+/bruno/Backend UTN
+```
+
+
+Para utilizarla:
+
+1. Abrir Bruno.
+2. Seleccionar **Open Collection**.
+3. Elegir la carpeta `bruno/Backend UTN`.
+4. Configurar la URL base de la API y el token JWT para las rutas protegidas.

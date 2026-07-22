@@ -1,0 +1,18 @@
+info:
+  name: Delete task ADMIN
+  type: http
+  seq: 11
+
+http:
+  method: DELETE
+  url: http://localhost:3001/api/tasks/admin/6a5ff8de2ce8644b91caaa0e
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNWZkZmVkNjZjYjJkY2E4MGQxMjk4OSIsInVzZXJuYW1lIjoiYW50b25lbGxhIiwiZW1haWwiOiJhbnRvbmVsbGFAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzg0Njg0NDc4LCJleHAiOjE3ODQ2ODgwNzh9.niUAtfqCClQVxEOI9KS-VurgcKCiK7QWgO4p-W0HkYU
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

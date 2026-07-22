@@ -1,0 +1,28 @@
+info:
+  name: Create task
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:3001/api/tasks
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNWZhMGU0OTA3Njg0Yjg3ZmRkMTEyOCIsInVzZXJuYW1lIjoiRmVybmFuZG8iLCJlbWFpbCI6ImZlckBnbWFpbC5jb20iLCJpYXQiOjE3ODQ2ODAxMzUsImV4cCI6MTc4NDY4MzczNX0.E3bmi4bRVFd-fmCcFhjddgzMAbGYSGhRI-yzjlHX_4I
+  body:
+    type: json
+    data: |2-
+        {
+          "title": "Respaldar base de datos",
+          "description": "Realizar una copia de seguridad de la base de datos.",
+          "status": "completed",
+          "priority": "high",
+          "dueDate": "2026-07-31"
+        }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

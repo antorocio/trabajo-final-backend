@@ -1,0 +1,24 @@
+info:
+  name: Update task
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: http://localhost:3001/api/tasks/6a5ff8de2ce8644b91caaa0e
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNWZhMGU0OTA3Njg0Yjg3ZmRkMTEyOCIsInVzZXJuYW1lIjoiRmVybmFuZG8iLCJlbWFpbCI6ImZlckBnbWFpbC5jb20iLCJpYXQiOjE3ODQ2ODAxMzUsImV4cCI6MTc4NDY4MzczNX0.E3bmi4bRVFd-fmCcFhjddgzMAbGYSGhRI-yzjlHX_4I
+  body:
+    type: json
+    data: |-
+      {
+       "priority": "high"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
