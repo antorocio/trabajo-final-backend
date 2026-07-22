@@ -4,9 +4,7 @@ const getTasks = async (req, res) => {
     try {
         const userLogged = req.userLogged
 
-        const { status, priority, search, sort,  page = 1, limit = 5 } = req.query
-
-        console.log(req.query)
+        const { status, priority, search, sort,  page = 1, limit = 5 } = req.validatedQuery 
 
         const filters = { userId: userLogged.id }
 

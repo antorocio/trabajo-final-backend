@@ -21,7 +21,7 @@ server.get("/", (req, res) => {
     })
 })
 
-server.use("/api/task", authMiddleware, TaskRouter)
+server.use("/api/tasks", authMiddleware, TaskRouter)
 server.use("/api/auth", AuthRouter )
 
 server.listen(PORT, () => {
